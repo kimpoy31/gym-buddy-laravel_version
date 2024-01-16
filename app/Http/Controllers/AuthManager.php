@@ -46,7 +46,7 @@ class AuthManager extends Controller{
     }
 
     function registrationPost(Request $request){
-        // validate if data are provided
+        // validate provided
         $request->validate([
         'name' => 'required',
         'email' => 'required | email | unique:users',

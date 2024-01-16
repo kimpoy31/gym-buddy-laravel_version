@@ -9,13 +9,16 @@
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/">Home</a>
+            <a class="nav-link" aria-current="page" href="{{route("home")}}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="{{route("login")}}">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/registration">Registration</a>
+            <a class="nav-link" href="{{route("registration")}}">Registration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route("logout")}}">Logout</a>
           </li>
         </ul>
 
