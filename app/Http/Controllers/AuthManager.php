@@ -19,7 +19,7 @@ class AuthManager extends Controller{
     function loginPost(Request $request){
         // validate if data are provided
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required | email',
             'password' => 'required',
         ]);
 
@@ -35,11 +35,8 @@ class AuthManager extends Controller{
             return redirect()->intended(route("home"));
         }
 
-        // Clear old input values
-        $request->session()->forget(['email', 'password']);
-
         // return error if invalid data
-        return redirect(route("login"))->with("error","Login credentials are invalid");
+        return redirect(route("login"))->with("error","Email or Password is not valid");
     } 
 
     // RegistraTion Controllers here ########################
@@ -63,12 +60,14 @@ class AuthManager extends Controller{
         $user = User::create($data);
 
         if(!$user){
-            return redirect(route("registration"))->with("error","Registration details are not valid");
+            return redirect(route("registration"))->with("error","Name , Email or Password is not valid");
         }
 
         return redirect(route("login"))->with("success","Registration successful");
     }
 
+
+    // Logout Controller here ########################
     function logout(){
         Session::flush();
         Auth::logout();

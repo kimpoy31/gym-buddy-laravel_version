@@ -7,11 +7,17 @@
                 @csrf
                 <div class="mb-3 has-validation">
                     <label class="form-label">Email address</label>
-                    <input type="email" class="form-control" name="email" required>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email">
+                    @error('email')
+                        <div class="text-danger my-2">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" required>
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control @error('email') is-invalid @enderror" name="password">
+                    @error('password')
+                        <div class="text-danger my-2">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
