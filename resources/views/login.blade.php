@@ -19,8 +19,14 @@
                         <div class="text-danger my-2">{{ $message }}</div>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </form>
+            <hr>
+            <div class="d-grid gap-2">
+                <a href="{{route("registration")}}" type="submit" class="btn btn-success">Create Account</a>
+            </div>
 
             @if(session()->has('error'))
                 <div class="alert alert-danger">{{session('error')}}</div>
