@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class AuthManager extends Controller{
 
@@ -45,9 +48,22 @@ class AuthManager extends Controller{
         ]);
         
         $data["name"] = $request->name;
-        $data["email"] = $request->name;
-        $data["password"] = $request->name;
+        $data["email"] = $request->email;
+        $data["password"] = Hash::make($request->password);
 
-        
+        $user = User::create($data);
+
+        if(!$user){
+            return redirect(route("registration"))->with("error","Registration details are not valid");
         }
+
+        return redirect(route("login"))->with("success","Registration successful");
     }
+
+    function logout(){
+        Session::flush();
+        Auth::logout();
+
+        return redirect(route("login"));
+    }
+}

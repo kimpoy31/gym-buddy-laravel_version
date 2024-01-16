@@ -26,6 +26,9 @@ Route::post('/login', [AuthManager::class, 'loginPost'])->name("login.post");
 Route::get('/registration', [AuthManager::class, 'registration'])->name("registration");
 Route::post('/registration', [AuthManager::class, 'registrationPost'])->name("registration.post");
 
+// Logout
+Route::get('/logout', [AuthManager::class, 'logout'])->name("logout");
+
 // My own summary and understanding ........................................
 // AuthManager is the class in which contains the controllers
 // [AuthManager::class] is the invocation and 'name' is the function to call in the class
