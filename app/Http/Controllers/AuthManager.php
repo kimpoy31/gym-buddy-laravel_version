@@ -22,6 +22,12 @@ class AuthManager extends Controller{
             'email' => 'required|email',
             'password' => 'required',
         ]);
+
+        // Check if email or password is empty
+        if (empty($request->email) || empty($request->password)) {
+        return redirect(route("login"))->with("error", "Email and password are required");
+        }
+
         $credentials = $request->only('email','password');
 
         // If success redirect to home ("/")
@@ -29,11 +35,14 @@ class AuthManager extends Controller{
             return redirect()->intended(route("home"));
         }
 
+        // Clear old input values
+        $request->session()->forget(['email', 'password']);
+
         // return error if invalid data
-        return redirect(route("login"))->with("error","Login details are not valid");
+        return redirect(route("login"))->with("error","Login credentials are invalid");
     } 
 
-    // Registraion Controllers here ########################
+    // RegistraTion Controllers here ########################
     
     function registration(){
         return view('registration');
