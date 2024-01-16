@@ -43,7 +43,7 @@ class AuthManager extends Controller{
         // validate if data are provided
         $request->validate([
         'name' => 'required',
-        'email' => 'required|emailuniqu:users',
+        'email' => 'required | email | unique:users',
         'password' => 'required',
         ]);
         
