@@ -20,12 +20,12 @@
                     @enderror
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </div>
             </form>
             <hr>
             <div class="d-grid gap-2">
-                <a href="{{route("registration")}}" type="submit" class="btn btn-success">Create Account</a>
+                <a href="{{route("registration")}}" type="submit" class="btn btn-success">Create New Account</a>
             </div>
 
             @if(session()->has('error'))

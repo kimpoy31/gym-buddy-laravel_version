@@ -1,28 +1,33 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">Gym Buddy</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<style>
+  .xPadding{
+    padding: .5rem 3rem;
+  }
 
-      <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+  @media(max-width:768px){
+    .xPadding{
+      padding: .5rem 0;
+    }
+  }
+</style>
+<nav class="navbar navbar-expand-lg bg-body-tertiary xPadding">
+  <div class="container-fluid d-flex justify-content-between">
 
-        <div class="navbar-nav">
-          <div class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{route("home")}}">Home</a>
-          </div>
+    <a class="navbar-brand" href="#">Gym Buddy</a>
 
-          @auth
-            <div class="nav-item">
-              <a class="nav-link btn" href="{{route("logout")}}">Logout</a>
-            </div>
-          @else
-            <div class="nav-item">
-              <a class="nav-link" href="{{route("login")}}">Login</a>
-            </div>
-          @endauth
+    <span class="navbar-text">
+      @auth
+        <div class="dropdown">
+            <button class="btn btn-danger-outline dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ auth()->user()->name }}
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item bg-danger text-white " role="button" type="button" href="{{route("logout")}}">Logout</a>
+                </li>
+            </ul>
         </div>
+      @endauth
+    </span>
 
-      </div>
-    </div>
+  </div>
 </nav>
