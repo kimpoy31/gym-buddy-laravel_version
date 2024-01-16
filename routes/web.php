@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthManager;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Login
+Route::get('/login', [AuthManager::class, 'login'])->name("login") ;
+Route::post('/login', [AuthManager::class, 'loginPost'])->name("login.post");
 
-Route::get('/registration', function () {
-    return view('registration');
-});
+// Registration
+Route::get('/registration', [AuthManager::class, 'registration'])->name("registration");
+Route::post('/registration', [AuthManager::class, 'registrationPost'])->name("registration.post");
+
+// My own summary and understanding ........................................
+// AuthManager is the class in which contains the controllers
+// [AuthManager::class] is the invocation and 'name' is the function to call in the class
+// ->name("name"); "name" is used as a key or access name invoked on *.blade.php action forms

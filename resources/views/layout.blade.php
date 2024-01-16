@@ -18,3 +18,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
+
+{{-- My Own summary and understanding --}}
+
+{{-- @yield("content") is where child components will be rendered depending on the invoked name --}}
+
+{{-- @include('navbar.navbar') calls and renders navbar component created --}}
+
+{{-- I used bootstrap can be seen on script tags and link href --}}
