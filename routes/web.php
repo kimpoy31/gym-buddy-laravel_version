@@ -22,6 +22,7 @@ Route::get('/', [AuthManager::class, 'home'])->name('home');
 Route::post('/', [WorkoutController::class, 'workoutPost'])->name("workout.post");
 Route::get('/workout/{id}/edit', [WorkoutController::class, 'workout'])->name("workout.edit");
 Route::patch('/workout/{id}/edit', [WorkoutController::class, 'workoutPatch'])->name("workout.patch");
+Route::delete('/workouts/{id}', [WorkoutController::class, 'workoutDelete'])->name('workout.delete');
 
 // Login
 Route::get('/login', [AuthManager::class, 'login'])->name("login") ;

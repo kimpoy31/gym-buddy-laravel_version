@@ -6,7 +6,7 @@
           <h4 class="card-title">{{ $workout->name }}</h4>
           <div>
             <a href="{{ route('workout.edit', ['id' => $workout->id]) }}" class="btn btn-secondary edit-workout-link">Edit</a>
-            <button class="btn btn-danger">delete</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal_{{ $workout->id }}">delete</button>
           </div>
         </div>
        
@@ -17,5 +17,30 @@
         </div>
       </div>
     </div>
-  @endforeach
+
+    {{-- Delete Modal --}}
+    <div class="modal fade" id="myModal_{{ $workout->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this workout <span class="text-danger">{{ $workout->name }}</span>? 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- Add your delete functionality here -->
+            <form method="POST" action="{{ route('workout.delete', ['id' => $workout->id]) }}">
+                @csrf
+                @method('DELETE') {{-- Use the correct HTTP method for deleting --}}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+@endforeach
 </div>

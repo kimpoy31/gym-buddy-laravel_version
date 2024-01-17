@@ -82,4 +82,23 @@ class WorkoutController extends Controller
         // Redirect to the root path after a successful update
         return redirect('/')->with("success", "Workout updated successfully");
     }
+
+    function workoutDelete(Request $request, $id){
+        if(!Auth::check()){
+            return redirect()->intended(route("login"));
+        }
+
+        // Find the existing workout by its ID
+        $workout = Workout::findOrFail($id);
+
+        // Delete the workout
+        $deleteResult = $workout->delete();
+
+        if (!$deleteResult) {
+            return redirect(route("home"))->with("error", "Unable to delete the workout");
+        }
+
+        // Redirect to the root path after a successful delete
+        return redirect('/')->with("success", "Workout deleted successfully");
+    }
 }
