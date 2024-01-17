@@ -19,6 +19,21 @@ class AuthManager extends Controller{
         return view('welcome');
     }
 
+    function workoutPost(Request $request){
+        if(!Auth::check()){
+            return redirect()->intended(route("login"));
+        }
+
+        // validate if data are provided
+        $request->validate([
+            'name' => 'required',
+            'weight' => 'required|numeric',
+            'reps' => 'required|numeric',
+        ]);
+
+        return view('welcome');
+    }
+
     // Login Controllers here ########################
     function login(){
         if(Auth::check()){

@@ -16,6 +16,7 @@ use App\Http\Controllers\AuthManager;
 
 // home
 Route::get('/', [AuthManager::class, 'home'])->name('home');
+Route::post('/', [AuthManager::class, 'workoutPost'])->name("workout.post");
 
 // Login
 Route::get('/login', [AuthManager::class, 'login'])->name("login") ;
