@@ -5,7 +5,7 @@
         <div class="card p-4 mt-4 w-100 gap-2" style="max-width:380px">
             <form action="{{ route('login.post')}}" method="POST" autocomplete="off">
                 @csrf
-                <div class="mb-3 has-validation">
+                <div class="mb-3">
                     <label class="form-label">Email address</label>
                     <input type="email" class="form-control @error('email') is-invalid @enderror" name="email">
                     @error('email')
