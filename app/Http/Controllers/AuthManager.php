@@ -53,6 +53,9 @@ class AuthManager extends Controller{
     // RegistraTion Controllers here ########################
     
     function registration(){
+        if(Auth::check()){
+            return redirect()->intended(route("home"));
+        }
         return view('registration');
     }
 
