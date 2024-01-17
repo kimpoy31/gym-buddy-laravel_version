@@ -12,7 +12,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary xPadding">
   <div class="container-fluid d-flex justify-content-between">
 
-    <a class="navbar-brand" href="#">Gym Buddy</a>
+    <a class="navbar-brand" href="/">Gym Buddy</a>
 
     <span class="navbar-text">
       @auth

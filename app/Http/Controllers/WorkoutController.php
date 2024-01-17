@@ -52,4 +52,27 @@ class WorkoutController extends Controller
         // Pass the workout data to the view for editing
         return view('components.editWorkout', compact('workout'));
     }
+
+    function workoutPatch(Request $request, $id){
+        if(!Auth::check()){
+            return redirect()->intended(route("login"));
+        }
+
+        // Find the existing workout by its ID
+        $workout = Workout::findOrFail($id);
+
+        // Update the workout data
+        $updateResult = $workout->update([
+            'name' => $request->input('name'),
+            'weight' => $request->input('weight'),
+            'reps' => $request->input('reps'),
+        ]);
+
+        if(!$updateResult){
+            return redirect(route("/workout.edit", ['id' => $id]))->with("error","Name , Weight or Reps is not valid");
+        }
+
+        // Redirect to the root path after a successful update
+        return redirect('/')->with("success", "Workout updated successfully");
+    }
 }
