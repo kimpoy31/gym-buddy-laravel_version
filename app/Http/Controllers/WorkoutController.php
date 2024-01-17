@@ -61,6 +61,13 @@ class WorkoutController extends Controller
         // Find the existing workout by its ID
         $workout = Workout::findOrFail($id);
 
+        // validate if data are provided
+        $request->validate([
+            'name' => 'required',
+            'weight' => 'required|numeric',
+            'reps' => 'required|numeric',
+        ]);
+
         // Update the workout data
         $updateResult = $workout->update([
             'name' => $request->input('name'),
