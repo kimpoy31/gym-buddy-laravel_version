@@ -10,7 +10,7 @@
         @enderror
     </div>
     <div class="mb-3">
-        <label class="form-label">Weight:</label>
+        <label class="form-label">Weight (kg):</label>
         <input type="number" class="form-control @error('weight') is-invalid @enderror" name="weight">
         @error('weight')
             <div class="text-danger my-2">{{ $message }}</div>

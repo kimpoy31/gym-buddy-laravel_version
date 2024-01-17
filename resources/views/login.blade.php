@@ -14,7 +14,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control @error('email') is-invalid @enderror" name="password">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
                     @error('password')
                         <div class="text-danger my-2">{{ $message }}</div>
                     @enderror
