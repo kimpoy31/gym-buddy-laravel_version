@@ -17,7 +17,11 @@ class AuthManager extends Controller{
             return redirect()->intended(route("login"));
         }
 
-        return view('welcome');
+        $userId = Auth::id();
+        $workouts = Workout::where('userId', $userId)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        return view('welcome', compact('workouts'));
     }
 
     function workoutPost(Request $request){
