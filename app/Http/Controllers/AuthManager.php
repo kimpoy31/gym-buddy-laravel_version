@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Workout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +32,21 @@ class AuthManager extends Controller{
             'reps' => 'required|numeric',
         ]);
 
-        return view('welcome');
+        // Get the authenticated user's ID
+        $userId = Auth::id();
+
+        $workout = Workout::create([
+            'name' => $request->input('name'),
+            'weight' => $request->input('weight'),
+            'reps' => $request->input('reps'),
+            'userId' => $userId,
+        ]);
+
+        if(!$workout){
+            return redirect(route("home"))->with("error","Name , Weight or Reps is not valid");
+        }
+
+        return redirect(route("home"))->with("success","Workout added successful");
     }
 
     // Login Controllers here ########################
