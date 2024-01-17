@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\WorkoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,10 @@ use App\Http\Controllers\AuthManager;
 
 // home
 Route::get('/', [AuthManager::class, 'home'])->name('home');
-Route::post('/', [AuthManager::class, 'workoutPost'])->name("workout.post");
+
+// workout
+Route::post('/', [WorkoutController::class, 'workoutPost'])->name("workout.post");
+Route::get('/workout/{id}/edit', [WorkoutController::class, 'workout'])->name("workout.edit");
 
 // Login
 Route::get('/login', [AuthManager::class, 'login'])->name("login") ;

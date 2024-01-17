@@ -24,35 +24,6 @@ class AuthManager extends Controller{
         return view('welcome', compact('workouts'));
     }
 
-    function workoutPost(Request $request){
-        if(!Auth::check()){
-            return redirect()->intended(route("login"));
-        }
-
-        // validate if data are provided
-        $request->validate([
-            'name' => 'required',
-            'weight' => 'required|numeric',
-            'reps' => 'required|numeric',
-        ]);
-
-        // Get the authenticated user's ID
-        $userId = Auth::id();
-
-        $workout = Workout::create([
-            'name' => $request->input('name'),
-            'weight' => $request->input('weight'),
-            'reps' => $request->input('reps'),
-            'userId' => $userId,
-        ]);
-
-        if(!$workout){
-            return redirect(route("home"))->with("error","Name , Weight or Reps is not valid");
-        }
-
-        return redirect(route("home"))->with("success","Workout added successful");
-    }
-
     // Login Controllers here ########################
     function login(){
         if(Auth::check()){

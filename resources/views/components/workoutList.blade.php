@@ -5,7 +5,7 @@
         <div class="w-100 d-flex justify-content-between">
           <h4 class="card-title">{{ $workout->name }}</h4>
           <div>
-            <button class="btn btn-secondary">edit</button>
+            <a href="{{ route('workout.edit', ['id' => $workout->id]) }}" class="btn btn-secondary edit-workout-link">Edit</a>
             <button class="btn btn-danger">delete</button>
           </div>
         </div>
